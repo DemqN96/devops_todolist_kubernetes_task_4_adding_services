@@ -63,9 +63,13 @@ kubectl apply -f busybox.yml
 pod/busybox created
 
 4️⃣ Test connectivity to the ClusterIP service
-kubectl exec -it busybox -n todoapp -- /bin/sh
+-1- kubectl exec -it busybox -n todoapp -- /bin/sh
 
 
 В середині pod:
 
 curl http://todoapp-servise.todoapp.svc.cluster.local:80
+
+-2- kubectl port-forward service/todoapp-nodeport-service 8081:80
+Відкриємо браузер: 
+[local](http://localhost:8081/)
