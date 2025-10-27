@@ -71,5 +71,21 @@ pod/busybox created
 curl http://todoapp-servise.todoapp.svc.cluster.local:80
 
 -2- kubectl port-forward service/todoapp-nodeport-service 8081:80
-Відкриємо браузер: 
-[local](http://localhost:8081/)
+Дізнайся IP-адресу ноди:
+
+kubectl get nodes -o wide
+
+
+У колонці INTERNAL-IP або EXTERNAL-IP буде адреса (наприклад 172.19.0.4).
+
+Подивись порт, відкритий NodePort-сервісом:
+
+kubectl get svc -n todoapp
+
+
+У колонці PORT(S) знайди значення після двокрапки, наприклад 80:30080/TCP.
+30080 — це порт, який відкрито зовні.
+
+Відкрий застосунок у браузері:
+
+http://<Node-IP>:30080
